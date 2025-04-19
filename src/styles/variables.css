@@ -1,0 +1,14 @@
+:root {
+  --cookie-font: 'Inter', sans-serif;
+  --cookie-bg: #fff;
+  --cookie-bg-dark: #1c1c1c;
+  --cookie-text: #333;
+  --cookie-text-dark: #eee;
+
+  --cookie-btn-accept-bg: #2563eb;
+  --cookie-btn-decline-bg: #e5e7eb;
+  --cookie-btn-text: #fff;
+
+  --cookie-border-radius: 0.5rem;
+  --cookie-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
