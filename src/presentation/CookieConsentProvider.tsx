@@ -1,10 +1,10 @@
 import { useCookieConsent } from "../application/hooks/useCookieConsent"
-import { ConsentContext } from "./ConsentContext"
+import { ConsentContext } from "../application/utils/ConsentContext"
 import { CookieBanner } from "./CookieBanner"
 import "../styles/variables.css"
 import { CookieConsentConfig } from "../domain/models"
 import { PropsWithChildren } from "react"
-import { CookieConsentConfigContext } from "./CookieConsentConfigContext"
+import { CookieConsentConfigContext } from "../application/utils/CookieConsentConfigContext"
 
 type CookieConsentProviderProps = {} & Pick<CookieConsentConfig, "cookieKey">
 export const CookieConsentProvider = ({

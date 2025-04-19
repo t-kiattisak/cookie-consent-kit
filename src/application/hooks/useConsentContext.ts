@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { ConsentContext } from "../../presentation/ConsentContext"
+import { ConsentContext } from "../utils/ConsentContext"
 
 export const useConsentContext = () => {
   const ctx = useContext(ConsentContext)

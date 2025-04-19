@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { ConsentData } from "../../domain/models"
 import { createConsentStorage } from "../../infrastructure/consentStorage"
-import { useConsentConfig } from "../../presentation/CookieConsentConfigContext"
+import { useConsentConfig } from "../utils/CookieConsentConfigContext"
 
 export function useCookieConsent() {
   const { cookieKey } = useConsentConfig()
