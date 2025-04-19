@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ConsentData } from "../../domain/models"
 import { createConsentStorage } from "../../infrastructure/consentStorage"
 import { useConsentConfig } from "../utils/CookieConsentConfigContext"
+import { CookieConsent } from "../utils/consentApi"
 
 export function useCookieConsent() {
   const { cookieKey } = useConsentConfig()
@@ -9,6 +10,13 @@ export function useCookieConsent() {
 
   const [consent, setConsent] = useState<ConsentData>(() => storage.getFull())
   const [isBannerVisible, setIsBannerVisible] = useState(true)
+
+  useEffect(() => {
+    CookieConsent._externalSetBanner = setIsBannerVisible
+    return () => {
+      CookieConsent._externalSetBanner = () => undefined
+    }
+  }, [])
 
   const acceptAll = () => {
     storage.set("accepted")

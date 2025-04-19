@@ -2,11 +2,11 @@ import { useState } from "react"
 import reactLogo from "./assets/react.svg"
 import viteLogo from "/vite.svg"
 import "./App.css"
-import { useCookieConsent } from "cookie-consent-kit"
+import { CookieConsent } from "cookie-consent-kit"
 function App() {
-  const { acceptAll, ...others } = useCookieConsent()
   const [count, setCount] = useState(0)
-  console.log({ acceptAll, others })
+  // console.log({ acceptAll, others })
+  console.log(CookieConsent.get())
 
   return (
     <>
