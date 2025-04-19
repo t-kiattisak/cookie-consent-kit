@@ -4,6 +4,7 @@ import {
   ConsentState,
   CookieConsentConfig,
 } from "../domain/models"
+import { safeJsonParse } from "../application/utils/safeJsonParse"
 
 export const createConsentStorage = ({
   cookieKey = "consent-key",
@@ -14,7 +15,7 @@ export const createConsentStorage = ({
     const raw = cookies[cookieKey]
     if (!raw) return "undecided"
     try {
-      const data: ConsentData = JSON.parse(raw)
+      const data = safeJsonParse<ConsentData>(raw, { consent: "undecided" })
       if (data.consent === "accepted" || data.consent === "declined") {
         return data.consent
       }
@@ -30,7 +31,7 @@ export const createConsentStorage = ({
     const raw = cookies[cookieKey]
     if (!raw) return { consent: "undecided" }
     try {
-      const data: ConsentData = JSON.parse(raw)
+      const data = safeJsonParse<ConsentData>(raw, { consent: "undecided" })
       return data
     } catch {
       if (raw === "accepted" || raw === "declined") {
