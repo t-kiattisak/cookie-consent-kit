@@ -8,6 +8,7 @@ export function useCookieConsent() {
   const storage = createConsentStorage({ cookieKey })
 
   const [consent, setConsent] = useState<ConsentData>(() => storage.getFull())
+  const [isBannerVisible, setIsBannerVisible] = useState(true)
 
   const acceptAll = () => {
     storage.set("accepted")
@@ -19,8 +20,14 @@ export function useCookieConsent() {
     setConsent(storage.getFull())
   }
 
+  const showBanner = () => setIsBannerVisible(true)
+  const hideBanner = () => setIsBannerVisible(false)
+
   return {
     ...consent,
+    showBanner,
+    hideBanner,
+    isBannerVisible,
     raw: consent,
     acceptAll,
     declineAll,
