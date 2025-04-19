@@ -4,11 +4,15 @@
   --cookie-bg-dark: #1c1c1c;
   --cookie-text: #333;
   --cookie-text-dark: #eee;
-
   --cookie-btn-accept-bg: #2563eb;
   --cookie-btn-decline-bg: #e5e7eb;
   --cookie-btn-text: #fff;
-
   --cookie-border-radius: 0.5rem;
   --cookie-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  
+  --cookie-spacing: calc(var(--cookie-border-radius) * 2);
+  --cookie-max-width: 600px;
+  --cookie-z-index: 1000;
+  --cookie-hover-opacity: 0.9;
+  --cookie-transition-speed: 0.2s;
 }

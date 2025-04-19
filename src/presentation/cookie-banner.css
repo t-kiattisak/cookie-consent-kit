@@ -1,30 +1,37 @@
 .cookie-banner {
+  font-family: var(--cookie-font);
   background: var(--cookie-bg);
   color: var(--cookie-text);
-  padding: 1rem;
+  padding: var(--cookie-spacing);
   border-radius: var(--cookie-border-radius);
   box-shadow: var(--cookie-box-shadow);
   position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
-  max-width: 600px;
+  bottom: var(--cookie-spacing);
+  left: var(--cookie-spacing);
+  right: var(--cookie-spacing);
+  max-width: var(--cookie-max-width);
   margin: auto;
-  z-index: 1000;
+  z-index: var(--cookie-z-index);
 }
 
 .actions {
-  margin-top: 1rem;
+  margin-top: var(--cookie-spacing);
   display: flex;
-  gap: 1rem;
+  gap: var(--cookie-spacing);
 }
 
 .btn {
-  padding: 0.5rem 1rem;
+  padding: var(--cookie-border-radius) var(--cookie-spacing);
   border: none;
   border-radius: var(--cookie-border-radius);
   cursor: pointer;
   color: var(--cookie-btn-text);
+  font-family: var(--cookie-font);
+  transition: opacity var(--cookie-transition-speed) ease;
+}
+
+.btn:hover {
+  opacity: var(--cookie-hover-opacity);
 }
 
 .btn.accept {
@@ -33,5 +40,12 @@
 
 .btn.decline {
   background-color: var(--cookie-btn-decline-bg);
-  color: #000;
+  color: var(--cookie-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .cookie-banner {
+    background: var(--cookie-bg-dark);
+    color: var(--cookie-text-dark);
+  }
 }

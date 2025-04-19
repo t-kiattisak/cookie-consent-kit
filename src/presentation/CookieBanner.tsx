@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom"
 import { useConsentContext } from "../application/hooks/useConsentContext"
 import "./cookie-banner.css"
 
@@ -6,7 +7,7 @@ export const CookieBanner = () => {
 
   if (consent !== "undecided") return null
 
-  return (
+  return createPortal(
     <div className='cookie-banner'>
       <p>
         We use cookies to improve your experience.{" "}
@@ -22,6 +23,7 @@ export const CookieBanner = () => {
           Accept
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
