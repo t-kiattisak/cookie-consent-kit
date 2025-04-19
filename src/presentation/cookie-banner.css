@@ -1,0 +1,37 @@
+.cookie-banner {
+  background: var(--cookie-bg);
+  color: var(--cookie-text);
+  padding: 1rem;
+  border-radius: var(--cookie-border-radius);
+  box-shadow: var(--cookie-box-shadow);
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  max-width: 600px;
+  margin: auto;
+  z-index: 1000;
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--cookie-border-radius);
+  cursor: pointer;
+  color: var(--cookie-btn-text);
+}
+
+.btn.accept {
+  background-color: var(--cookie-btn-accept-bg);
+}
+
+.btn.decline {
+  background-color: var(--cookie-btn-decline-bg);
+  color: #000;
+}

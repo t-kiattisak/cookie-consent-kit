@@ -4,3 +4,7 @@ export type ConsentData = {
   consent: ConsentState
   updatedAt?: string
 }
+
+export type CookieConsentConfig = {
+  cookieKey?: string
+}

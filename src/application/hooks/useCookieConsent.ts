@@ -1,20 +1,22 @@
 import { useState } from "react"
 import { ConsentData } from "../../domain/models"
-import { consentStorage } from "../../infrastructure/consentStorage"
+import { createConsentStorage } from "../../infrastructure/consentStorage"
+import { useConsentConfig } from "../../presentation/CookieConsentConfigContext"
 
 export function useCookieConsent() {
-  const [consent, setConsent] = useState<ConsentData>(() =>
-    consentStorage.getFull()
-  )
+  const { cookieKey } = useConsentConfig()
+  const storage = createConsentStorage({ cookieKey })
+
+  const [consent, setConsent] = useState<ConsentData>(() => storage.getFull())
 
   const acceptAll = () => {
-    consentStorage.set("accepted")
-    setConsent(consentStorage.getFull())
+    storage.set("accepted")
+    setConsent(storage.getFull())
   }
 
   const declineAll = () => {
-    consentStorage.set("declined")
-    setConsent(consentStorage.getFull())
+    storage.set("declined")
+    setConsent(storage.getFull())
   }
 
   return {

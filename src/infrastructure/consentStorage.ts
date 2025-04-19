@@ -1,13 +1,17 @@
 import * as cookie from "cookie"
-import { ConsentData, ConsentState } from "../domain/models"
+import {
+  ConsentData,
+  ConsentState,
+  CookieConsentConfig,
+} from "../domain/models"
 
-const COOKIE_NAME = "cookie_consent_state"
-
-export const consentStorage = {
+export const createConsentStorage = ({
+  cookieKey = "consent-key",
+}: Pick<CookieConsentConfig, "cookieKey">) => ({
   get(): ConsentState {
     if (typeof document === "undefined") return "undecided"
     const cookies = cookie.parse(document.cookie || "")
-    const raw = cookies[COOKIE_NAME]
+    const raw = cookies[cookieKey]
     if (!raw) return "undecided"
     try {
       const data: ConsentData = JSON.parse(raw)
@@ -23,7 +27,7 @@ export const consentStorage = {
   getFull(): ConsentData {
     if (typeof document === "undefined") return { consent: "undecided" }
     const cookies = cookie.parse(document.cookie || "")
-    const raw = cookies[COOKIE_NAME]
+    const raw = cookies[cookieKey]
     if (!raw) return { consent: "undecided" }
     try {
       const data: ConsentData = JSON.parse(raw)
@@ -38,7 +42,7 @@ export const consentStorage = {
 
   set(state: ConsentState) {
     const serialized = cookie.serialize(
-      COOKIE_NAME,
+      cookieKey,
       JSON.stringify({ consent: state, updatedAt: new Date().toISOString() }),
       {
         maxAge: 60 * 60 * 24 * 365,
@@ -50,10 +54,10 @@ export const consentStorage = {
   },
 
   clear() {
-    const serialized = cookie.serialize(COOKIE_NAME, "", {
+    const serialized = cookie.serialize(cookieKey, "", {
       maxAge: 0,
       path: "/",
     })
     document.cookie = serialized
   },
-}
+})
