@@ -8,3 +8,15 @@ export type ConsentData = {
 export type CookieConsentConfig = {
   cookieKey?: string
 }
+
+export type ConsentCategory = "essential" | "analytics" | "marketing"
+
+export type ConsentPreferences = {
+  [key in ConsentCategory]: boolean
+}
+
+export const defaultPreferences: ConsentPreferences = {
+  essential: true,
+  analytics: false,
+  marketing: false,
+}

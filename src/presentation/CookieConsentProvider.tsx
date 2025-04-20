@@ -5,12 +5,14 @@ import "../styles/variables.css"
 import { CookieConsentConfig } from "../domain/models"
 import { PropsWithChildren } from "react"
 import { CookieConsentConfigContext } from "../application/utils/CookieConsentConfigContext"
+import { CookieConsent } from "../application/utils/consentApi"
 
 type CookieConsentProviderProps = {} & Pick<CookieConsentConfig, "cookieKey">
 export const CookieConsentProvider = ({
   children,
   cookieKey = "consent-key",
 }: PropsWithChildren<CookieConsentProviderProps>) => {
+  CookieConsent.config({ cookieKey })
   return (
     <CookieConsentConfigContext.Provider value={{ cookieKey }}>
       <ConsentContextProvider>

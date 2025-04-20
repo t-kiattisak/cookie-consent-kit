@@ -1,10 +1,17 @@
-import { ConsentData, ConsentState } from "../../domain/models"
+import {
+  ConsentCategory,
+  ConsentData,
+  ConsentPreferences,
+  ConsentState,
+} from "../../domain/models"
 import { createConsentStorage } from "../../infrastructure/consentStorage"
+import { createPreferencesStorage } from "../../infrastructure/preferencesStorage"
 
 const DEFAULT_KEY = "cookie_consent_state"
 let currentKey = DEFAULT_KEY
 
 const storage = () => createConsentStorage({ cookieKey: currentKey })
+const prefStorage = () => createPreferencesStorage({ cookieKey: currentKey })
 
 type CookieConsentAPI = {
   config: (options: { cookieKey: string }) => void
@@ -16,6 +23,10 @@ type CookieConsentAPI = {
   showBanner: () => void
   hideBanner: () => void
   _externalSetBanner?: (_visible: boolean) => void
+
+  savePreferences: (prefs: ConsentPreferences) => void
+  getPreferences: () => ConsentPreferences
+  hasConsentedTo: (category: ConsentCategory) => boolean
 }
 
 export const CookieConsent: CookieConsentAPI = {
@@ -45,5 +56,15 @@ export const CookieConsent: CookieConsentAPI = {
 
   hideBanner: () => {
     CookieConsent._externalSetBanner?.(false)
+  },
+
+  savePreferences: (prefs) => {
+    prefStorage().set({ ...prefs, essential: true })
+  },
+
+  getPreferences: () => prefStorage().get(),
+
+  hasConsentedTo: (category) => {
+    return prefStorage().get()[category] === true
   },
 }

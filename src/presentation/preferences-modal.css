@@ -1,0 +1,49 @@
+.consent-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+}
+
+.consent-modal__overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  inset: 0;
+}
+
+.consent-modal__content {
+  background: var(--cookie-bg, #fff);
+  color: var(--cookie-text, #111);
+  max-width: 500px;
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: var(--cookie-border-radius, 0.75rem);
+  position: relative;
+  z-index: 2;
+}
+
+.consent-modal__list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.consent-modal__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.consent-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .consent-modal__content {
+    background: var(--cookie-bg-dark, #1f2937);
+    color: var(--cookie-text-dark, #eee);
+  }
+}
