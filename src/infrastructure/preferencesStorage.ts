@@ -11,13 +11,22 @@ export function createPreferencesStorage({ cookieKey }: Options = {}) {
 
   return {
     get(): ConsentPreferences {
-      const cookies = cookie.parse(document.cookie || "")
-      const raw = cookies[key]
-      return safeJsonParse(raw, {
-        essential: true,
-        analytics: false,
-        marketing: false,
-      })
+      try {
+        const cookies = cookie.parse(document.cookie || "")
+        const raw = cookies[key]
+        return safeJsonParse(raw, {
+          essential: true,
+          analytics: false,
+          marketing: false,
+        })
+      } catch (error) {
+        console.error("Failed to get preferences from cookies:", error)
+        return {
+          essential: true,
+          analytics: false,
+          marketing: false,
+        }
+      }
     },
 
     set(prefs: ConsentPreferences) {

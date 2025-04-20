@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./preferences-modal.css"
 import { ConsentPreferences, defaultPreferences } from "../domain/models"
 import { createPortal } from "react-dom"
+import { CookieConsent } from "../application/utils/consentApi"
 
 type Props = {
   visible: boolean
@@ -15,6 +16,11 @@ export const ConsentPreferencesModal = ({
   onSave,
 }: Props) => {
   const [prefs, setPrefs] = useState<ConsentPreferences>(defaultPreferences)
+
+  useEffect(() => {
+    const existing = CookieConsent.getPreferences()
+    setPrefs(existing)
+  }, [])
 
   const toggle = (key: keyof ConsentPreferences) => {
     if (key === "essential") return
