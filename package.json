@@ -1,16 +1,40 @@
 {
   "name": "cookie-consent-kit",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/cookie-consent-kit.cjs",
   "module": "./dist/cookie-consent-kit.js",
   "types": "./dist/index.d.ts",
+  "description": "A lightweight and customizable cookie consent banner and preferences manager for React applications, built with accessibility and GDPR compliance in mind.",
+  "keywords": [
+    "cookie",
+    "cookie-consent",
+    "gdpr",
+    "ccpa",
+    "react",
+    "react-hooks",
+    "privacy",
+    "consent-banner",
+    "cookie-banner",
+    "cookie-preferences",
+    "cookie-policy",
+    "consent-management",
+    "dark-mode",
+    "cookie-consent-kit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/t-kiattisak/cookie-consent-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/t-kiattisak/cookie-consent-kit/issues"
+  },
+  "homepage": "https://github.com/t-kiattisak/cookie-consent-kit#readme",
+  "author": "Kiattisak Jomram",
+  "license": "MIT",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "lint": "eslint ."
   },
   "dependencies": {
     "cookie": "^1.0.2",
